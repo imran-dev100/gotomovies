@@ -1,0 +1,35 @@
+server:
+  port: 8761
+  
+spring:
+  application:
+    name: eureka-server
+    
+eureka:
+  renewalPercentThreshold: 0.85
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+      
+management:
+  health:
+    probes:
+      enabled: true
+    diskspace:
+      enabled: true
+  livenessState:
+    enabled: true
+  readinessState:
+    enabled: true
+  server:
+    port: 8761
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    enabled-by-default: true
+    web:
+      exposure:
+        include: health, info

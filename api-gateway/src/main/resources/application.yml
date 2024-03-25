@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      mvc:
+        routes:
+        - id: user-service
+          uri: http://localhost:8081
+          predicates:
+#            - Path=/oauth/**
+            - Path=/**
+            
+    
+eureka:
+  service-url:
+    defaultZone: http://localhost:8761/eureka/
+      
+management:
+  health:
+    probes:
+      enabled: true
+    diskspace:
+      enabled: true
+  livenessState:
+    enabled: true
+  readinessState:
+    enabled: true
+  server:
+    port: 8080
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    enabled-by-default: true
+    web:
+      exposure:
+        include: "*"

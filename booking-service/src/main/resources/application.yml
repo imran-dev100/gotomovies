@@ -1,0 +1,52 @@
+server:
+  port: 8083
+  error:
+    include-message: always
+
+eureka:
+  service-url:
+    defaultZone: http://localhost:8761/eureka/
+    
+management:
+  health:
+    probes:
+      enabled: true
+    diskspace:
+      enabled: true
+  livenessState:
+    enabled: true
+  readinessState:
+    enabled: true
+  server:
+    port: 8083
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    enabled-by-default: true
+    web:
+      exposure:
+        include: health, info
+
+
+spring:
+  application:
+    name: booking-service
+  datasource:
+    url: jdbc:postgresql://localhost:5434/booking_db
+    username:
+    password:
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+#    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+#        format_sql: true
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+api:
+  payment: http://localhost:8082/payment/pay
